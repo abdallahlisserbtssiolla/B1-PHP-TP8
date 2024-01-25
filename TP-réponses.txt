@@ -1,9 +1,41 @@
 TP – Fonctions - Paramètres
--------------------Exercice 1-------------------
-
--------------------Exercice 2-------------------
-
+1. Pour se positionner, faire cd [Nom du Dossier].
+2. Pour cloner le dépôt, ouvrir un terminal et exécutez la commande suivante: git clone https://github.com/dev-HR/B1-Asla-Fonctions-1.git .
+3. Pour se positionner , faire la commande cd B1-Asla-Fonctions-1
+4. Pour éditer le fichier, faire geany asla-fonctions-01.php
+-------------------Exercice 1 : Code d'un produit -------------------
+5. La fonction getcode permet de lister les différents caractéristiques pour un produit et la fonction mainTest est la fonction principale.
+6. Voir le fichier exercice-1.php
+7. Voici la trace d'exécution:
+1) -------------------------------------
+Code du produit 1 : 178
+Code du produit 2 : 179
+-------------------Exercice 2: Nom d'un produit-------------------
+8.Voici le code de la fonction getNom() :
+function getNom( $produit ){
+		list( $code , $nom , $prixUnit , $promo ) = explode( ":" , $produit ) ;
+		return $nom ;
+	}
+9. On retirer les # .
+10. Voici la trace d'exécution:
+2) Nom d'un produit -------------------------------------
+Nom du produit 1 : Dentifrice fraise
+Nom du produit 2 : Dentifrice au sel marin
 -------------------Exercice 3-------------------
+11. Voici la fonction estEnPromo:
+function estEnPromo( $produit ){
+		list( $code , $nom , $prixUnit , $promo ) = explode( ":" , $produit ) ;
+		
+		if( $promo == 0 ){
+			return $promo ;
+		}
+		else {
+			return $promo ;
+		}
+	}
+12.On retirer les # .
+13. Voici la trace d'exécution:
+
 
 -------------------Exercice 4-------------------
 
