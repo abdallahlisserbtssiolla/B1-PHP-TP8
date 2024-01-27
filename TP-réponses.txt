@@ -21,7 +21,7 @@ function getNom( $produit ){
 2) Nom d'un produit -------------------------------------
 Nom du produit 1 : Dentifrice fraise
 Nom du produit 2 : Dentifrice au sel marin
--------------------Exercice 3-------------------
+-------------------Exercice 3 : Produit en promotion -------------------
 11. Voici la fonction estEnPromo:
 function estEnPromo( $produit ){
 		list( $code , $nom , $prixUnit , $promo ) = explode( ":" , $produit ) ;
@@ -35,12 +35,235 @@ function estEnPromo( $produit ){
 	}
 12.On retirer les # .
 13. Voici la trace d'exécution:
+3) Produit en promotion -------------------------------------
+Le produit Dentifrice fraise est en promotion.
+Le produit Dentifrice au sel marin n'est pas en promotion.
 
 
 -------------------Exercice 4-------------------
+14. Voici la fonction complété:
+function estUnPetitPrix($produit, $petitPrix)
+{
+    list($code, $nom, $prixUnit, $promo) = explode(":", $produit);
 
+    if ($prixUnit < $petitPrix) {
+        return true;
+    } else {
+        return false;
+    }
+}
+
+15. On retirer les # .
+16. Voici la trace d'exécution:
+4) Vendu à un petit prix ? -------------------------------------
+Le produit Dentifrice fraise n'est pas proposé à un petit prix.
+Le produit Dentifrice au sel marin est proposé à un petit prix.
 -------------------Exercice 5-------------------
+17. Voici la fonction calculerPrixPromo:
+function calculerPrixPromo($produit)
+{
+    list($code, $nom, $prixUnit, $promo) = explode(":", $produit);
 
+    $prixPromo = $prixUnit - ($prixUnit * $promo / 100);
+
+    return $prixPromo;
+}
+18. On retirer les # .
+19. Voici la trace d'exécution:
+5) Promotion appliquée -------------------------------------
+Le produit Dentifrice fraise est proposé au prix promotionnel de 13.5 €
+Pas de promotion pour le produit Dentifrice au sel marin.
 -------------------Exercice 6-------------------
+20. Elle était barré.
+21.On retire les #.
+22.Voici la trace d'exécution :
+6.a) Code HTML Produit 1 -------------------------------------
+Code HTML généré :
+
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+        <meta charset="utf-8">
+        <title>Asla</title>
+</head>
+<body>
+        <h1>Dentifrice fraise</h1>
+        <ul>
+                <li>Prix : 15 €</li>
+                <li>Promotion : 10 %</li>
+        </ul>
+</body>
+
+
+6.b) Code HTML Produit 2 -------------------------------------
+Code HTML généré :
+
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+        <meta charset="utf-8">
+        <title>Asla</title>
+</head>
+<body>
+        <h1>Dentifrice au sel marin</h1>
+        <ul>
+                <li>Prix : 8.9 €</li>
+                <li>Promotion : 0 %</li>
+        </ul>
+</body>
+23. On a bien le fichier qui est crée et qui affiche ceci:
+Dentifrice au sel marin
+
+    Prix : 8.9 €
+    Promotion : 0 %
 
 -------------------Exercice 7-------------------
+24.Voici la fonction qui permet de générer un tableau:
+function genererTableHTML($produit, $nomFichier = "")
+	{
+	    list($code, $nom, $prixUnit, $promo) = explode(":", $produit);
+
+	    $html = <<<FIN_HTML
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="utf-8">
+    <title>Asla</title>
+        <style>
+        table {
+            border-collapse: collapse;
+            width: 50%;
+        }
+
+        th, td {
+            border: 1px solid #dddddd;
+            text-align: left;
+            padding: 8px;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>$nom</h1>
+    <table border="1">
+        <tr>
+            <th>Code</th>
+            <th>Nom</th>
+            <th>Prix Unit</th>
+            <th>Promotion</th>
+        </tr>
+        <tr>
+            <td>$code</td>
+            <td>$nom</td>
+            <td>$prixUnit €</td>
+            <td>$promo %</td>
+        </tr>
+    </table>
+</body>
+
+FIN_HTML;
+
+	    if ($nomFichier != "") {
+	        $filename = "vue-produit-$code.html";
+	        $dest = fopen($filename, "w");
+	        fwrite($dest, $html);
+	        fclose($dest);
+	        echo "Le fichier HTML ($filename) a été généré avec succès.\n";
+	    }
+
+	    return $html;
+	}
+25.Voici son code de Test:
+	    // Exercice 7
+	    echo "\n7.a) Produit 1 -------------------------------------\n";
+	    $codeHTML = genererTableHTML($produitTest1, "vue-produit");
+	    echo "Code HTML généré :\n$codeHTML\n";
+
+		echo "\n7.b) Produit 2 -------------------------------------\n";
+	    $codeHTML = genererTableHTML($produitTest2, "vue-produit");
+	    echo "Code HTML généré :\n$codeHTML\n";
+26. Voici la trace d'exécution:
+7.a) Produit 1 -------------------------------------
+Code HTML généré :
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="utf-8">
+    <title>Asla</title>
+        <style>
+        table {
+            border-collapse: collapse;
+            width: 50%;
+        }
+
+        th, td {
+            border: 1px solid #dddddd;
+            text-align: left;
+            padding: 8px;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Dentifrice fraise</h1>
+    <table border="1">
+        <tr>
+            <th>Code</th>
+            <th>Nom</th>
+            <th>Prix Unit</th>
+            <th>Promotion</th>
+        </tr>
+        <tr>
+            <td>178</td>
+            <td>Dentifrice fraise</td>
+            <td>15 €</td>
+            <td>10 %</td>
+        </tr>
+    </table>
+</body>
+
+
+7.b) Produit 2 -------------------------------------
+Code HTML généré :
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="utf-8">
+    <title>Asla</title>
+        <style>
+        table {
+            border-collapse: collapse;
+            width: 50%;
+        }
+
+        th, td {
+            border: 1px solid #dddddd;
+            text-align: left;
+            padding: 8px;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Dentifrice au sel marin</h1>
+    <table border="1">
+        <tr>
+            <th>Code</th>
+            <th>Nom</th>
+            <th>Prix Unit</th>
+            <th>Promotion</th>
+        </tr>
+        <tr>
+            <td>179</td>
+            <td>Dentifrice au sel marin</td>
+            <td>8.9 €</td>
+            <td>0 %</td>
+        </tr>
+    </table>
+</body>
+27. On a bien les deux fichiers.
